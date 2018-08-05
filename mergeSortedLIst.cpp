@@ -47,8 +47,17 @@ public:
 
 	ListNode* mergeKLists(vector<ListNode*>& lists) {
 		int vectorsize = lists.size();
+		for(int x = 0; x < vectorsize; x++) {
+			if(lists[x] == NULL) {
+				lists[x] = lists[vectorsize - 1];
+				vectorsize--;
+			} else {
+				break;
+			}
+		}
+
 		while(vectorsize > 0) {
-			int min = -2147483648;
+			int min = lists[0]->val;
 			int smallestIndexNode = 0;
 
 			for(int x = 0; x < vectorsize; x++) {
@@ -57,7 +66,7 @@ public:
 					x--;
 				} else {
 					int value = lists[x]->val;
-					if(min > lists[x]->val || min == -2147483648) {
+					if(min > lists[x]->val) {
 						smallestIndexNode = x;
 						min = lists[x]->val;
 					}
