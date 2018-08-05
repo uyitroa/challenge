@@ -45,12 +45,12 @@ public:
 	}
 
 	ListNode* mergeKLists(vector<ListNode*>& lists) {
-		while(lists.size() > 0) {
-
+		int vectorsize = lists.size();
+		while(vectorsize > 0) {
 			int min = -2147483648;
 			int smallestIndexNode = 0;
 
-			for(int x = 0; x < lists.size(); x++) {
+			for(int x = 0; x < vectorsize; x++) {
 				if(lists[x] == NULL) {
 					lists.erase(lists.begin() + x);
 					x--;
@@ -62,12 +62,14 @@ public:
 					}
 				}
 			}
-			if(lists.size() == 0)
+			if(vectorsize == 0)
 				break;
 			add_one(min);
 			lists[smallestIndexNode] = lists[smallestIndexNode]->next;
-			if (lists[smallestIndexNode] == NULL)
-				lists.erase(lists.begin() + smallestIndexNode);
+			if (lists[smallestIndexNode] == NULL) {
+				lists[smallestIndexNode] = lists[vectorsize - 1];
+				vectorsize--;
+			}
 		}
 		return head;
 	}
