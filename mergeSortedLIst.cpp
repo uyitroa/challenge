@@ -65,12 +65,12 @@ public:
 					lists[x] = lists[vectorsize - 1];
 					vectorsize--;
 					x--;
-				} else {
-					int value = lists[x]->val;
-					if(min > lists[x]->val) {
-						smallestIndexNode = x;
-						min = lists[x]->val;
-					}
+					continue;
+				}
+				int value = lists[x]->val;
+				if(min > lists[x]->val) {
+					smallestIndexNode = x;
+					min = lists[x]->val;
 				}
 			}
 			if(vectorsize == 0)
