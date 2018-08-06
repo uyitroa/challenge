@@ -62,7 +62,8 @@ public:
 
 			for(int x = 0; x < vectorsize; x++) {
 				if(lists[x] == NULL) {
-					lists.erase(lists.begin() + x);
+					lists[x] = lists[vectorsize - 1];
+					vectorsize--;
 					x--;
 				} else {
 					int value = lists[x]->val;
