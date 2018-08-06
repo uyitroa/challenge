@@ -37,12 +37,14 @@ public:
 	vector<int> findSubstring(string s, vector<string>& words) {
 		vector<string> combination;
 		vector<int> result;
+		if(words.size() == 0 || s.length() == 0)
+			return {};
 		generate(words, combination, words.size());
 		int size = combination[0].length();
 		for(int x = 0; x < s.length() - size + 1; x++) {
 			if(in(s.substr(x, size), combination)) {
 				result.push_back(x);
-				x += size - 1;
+				//x += size - 1;
 			}
 		}
 		return result;
@@ -50,9 +52,9 @@ public:
 };
 int main() {
 	Solution solution;
-	vector<string> s = {"foo", "bar"};
-	string sh = "barfoothefoobarman";
+	vector<string> s = {"asdf", "fds"};
+	string sh = "";
 	vector<int> shit = solution.findSubstring(sh, s);
-	cout << shit[1] << "\n";
+	cout << shit[0] << "\n";
 	return 0;
 }
