@@ -13,13 +13,10 @@ public:
 	}
 
 	int check(string s, vector<string> words) {
-		int firstsize = 0;
 		int vectorsize = words.size();
 
 		for(int x = 0; x < vectorsize; x++) {
 			if(s.substr(0, words[x].length()) == words[x]) {
-				if(firstsize == 0)
-					firstsize = words[x].length();
 				s = s.substr(words[x].length(), s.length() - words[x].length()); 
 				words[x] = words[vectorsize - 1];
 				vectorsize--;
@@ -27,7 +24,7 @@ public:
 			}
 		}
 		if(s == "")
-			return firstsize;
+			return 1;
 		return 0;
 	}
 
@@ -39,10 +36,8 @@ public:
 		int size = countsize(words);
 		for(int x = 0; x < s.length() - size + 1; x++) {
 			int in = check(s.substr(x, size), words);
-			if(in) {
+			if(in == 1)
 				pos.push_back(x);
-				x += in - 1;
-			}
 		}
 		return pos;
 	}
