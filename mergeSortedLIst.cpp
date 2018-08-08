@@ -28,7 +28,16 @@ private:
 	ListNode *tail = NULL;
 
 public:
-
+	~Solution() {
+		ListNode *tmp = head;
+		while(tmp) {
+			head = tmp->next;
+			delete tmp;
+			tmp = head;
+		}
+		delete tmp;
+		delete head;
+	}
 	void add_one(int min) {
 		ListNode *tmp = new ListNode(min);
 		if (head == NULL)
@@ -89,6 +98,16 @@ public:
 
 class Linked_list {
 public:
+	~Linked_list() {
+		ListNode *tmp = head;
+		while(tmp) {
+			head = tmp->next;
+			delete tmp;
+			tmp = head;
+		}
+		delete tmp;
+		delete head;
+	}
 	ListNode *head, *tail;
 	Linked_list(int a, int b, int c = -1)
 	{
@@ -131,10 +150,6 @@ int main() {
 	Solution solution;
 	ListNode *list = solution.mergeKLists(lists);
 	print(list);
-	/* delete l1.head;
-	delete l2.head;
-	delete l3.head;
 
-	delete list; */
 	return 0;
 }
