@@ -6,6 +6,16 @@ class Solution {
 private:
 	vector<vector<int> > board;
 public:
+	void printBoard() {
+		for(int x = 0; x < board.size(); x++) {
+			for(int y = 0; y < board[0].size(); y++) {
+				cout << board[x][y] << " ";
+			}
+			cout << "\n";
+		}
+		cout << "\n";
+	}
+
 	int generatePossibility(int x, int y, vector<int> &coordx, vector<int> &coordy, bool end = false) {
 		int size = 0;
 		if(y - 2 >= 0) { // up
@@ -122,14 +132,15 @@ public:
 		int actualsize = 0;
 		vector<int> coordx;
 		vector<int> coordy;
-		cout << "x: " << x << "y: " << y << "\n";
+		//cout << "x: " << x << "y: " << y << "\n";
 		if(nblock == 1) {
 			size += generatePossibility(x, y, coordx, coordy, true);
+			//cout << "size: " << size << "\n";
 			return size;
 		}
 		actualsize = generatePossibility(x, y, coordx, coordy);
 		for(int x = 0; x < actualsize; x++) {
-			size += calcBlock(coordx[x], coordy[x], nblock - 1, size);
+			size = calcBlock(coordx[x], coordy[x], nblock - 1, size);
 		}
 		return size;
 	}
@@ -143,6 +154,7 @@ public:
 int main() {
 	Solution solution;
 	vector<vector<int> > board(BOARD_SIZE, vector<int> (BOARD_SIZE, 0));
-	cout << solution.solve(0, 0, 2, board) << "\n";
+	cout << solution.solve(0, 0, 3, board) << "\n";
+	solution.printBoard();
 	return 0;
 }
