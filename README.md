@@ -1,2 +1,2 @@
 # challenge
-Do some challenge
+Do some challenge: leetcode
