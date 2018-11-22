@@ -56,8 +56,9 @@ public:
 					vector<string> temp = result;
 					temp[SIZE - n] = to_string(i) + " " + to_string(j);
 					temp = check(n - 1, newboard(i, j, board), temp);
-					if(!temp.empty())
+					if(!temp.empty()) {
 						return temp;
+					}
 
 				}
 			}
